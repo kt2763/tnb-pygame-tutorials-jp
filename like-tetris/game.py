@@ -1,34 +1,45 @@
 import pygame
+import sys
 
 pygame.init()  # Pygameの初期化
-screen = pygame.display.set_mode((400, 500))  # 画面サイズの設定
-pygame.display.set_caption("Pygameでイベント処理をしてみる")
 
-x, y = 175, 225  # 四角形の位置
-width, height = 50, 50  # 四角形の大きさ
-velocity = 5  # 四角形の移動速度
+# 画面サイズの設定
+SCREEN_WIDTH = 300
+SCREEN_HEIGHT = 600
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("テトリス風ゲーム")
 
-running = True  # ゲームループ
+# 色の定義
+WHITE = (255, 255, 255)
+GRAY = (200, 200, 200)
+BLACK = (0, 0, 0)
+
+# グリッドの設定
+CELL_SIZE = 30
+GRID_WIDTH = SCREEN_WIDTH // CELL_SIZE
+GRID_HEIGHT = SCREEN_HEIGHT // CELL_SIZE
+
+# ゲームループ
+running = True
 while running:
-    pygame.time.delay(50)  # ゲームのスピードを調整
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    keys = pygame.key.get_pressed()  # キー入力の処理
+    screen.fill(WHITE)  # 画面を白で塗りつぶす
 
-    if keys[pygame.K_LEFT]:
-        x -= velocity
-    if keys[pygame.K_RIGHT]:
-        x += velocity
-    if keys[pygame.K_UP]:
-        y -= velocity
-    if keys[pygame.K_DOWN]:
-        y += velocity
+    # グリッド線を描画
+    for x in range(0, SCREEN_WIDTH, CELL_SIZE):
+        pygame.draw.line(screen, GRAY, (x, 0), (x, SCREEN_HEIGHT))
+    for y in range(0, SCREEN_HEIGHT, CELL_SIZE):
+        pygame.draw.line(screen, GRAY, (0, y), (SCREEN_WIDTH, y))
 
-    screen.fill((255, 255, 255))  # 画面を白でクリア
-    pygame.draw.rect(screen, (0, 0, 255), (x, y, width, height))  # 四角形を描画
-    pygame.display.update()  # 描画内容を画面に反映
+    # ゲーム画面の枠を描画
+    pygame.draw.rect(screen, BLACK, (0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), 2)
 
+    # 画面の更新
+    pygame.display.update()
+
+# Pygameの終了処理
 pygame.quit()
+sys.exit()
