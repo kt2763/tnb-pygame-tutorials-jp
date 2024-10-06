@@ -42,6 +42,11 @@ class Block:
         )
         self.x = GRID_WIDTH // 2
         self.y = 0
+        self.rotation = 0
+
+    def rotate(self):
+        # ブロックの形状を回転させる（90度回転）
+        self.shape = [(-y, x) for x, y in self.shape]
 
     def draw(self, surface):
         for pos in self.shape:
@@ -63,9 +68,6 @@ def get_new_block():
     return Block(shape)
 
 
-current_block = get_new_block()
-
-
 # 衝突判定の簡易実装
 def check_collision(block, grid):
     for pos in block.shape:
@@ -78,13 +80,35 @@ def check_collision(block, grid):
     return False
 
 
+# ライン消去の実装
+def clear_lines(grid):
+    global score
+    lines_cleared = 0
+    for y in range(GRID_HEIGHT):
+        if all(grid[y][x] for x in range(GRID_WIDTH)):
+            lines_cleared += 1
+            # 上の行を下に移動
+            for move_y in range(y, 0, -1):
+                grid[move_y] = grid[move_y - 1][:]
+            grid[0] = [0 for _ in range(GRID_WIDTH)]
+    if lines_cleared > 0:
+        score += lines_cleared * 100
+
+
 # グリッドの初期化
 grid = [[0 for _ in range(GRID_WIDTH)] for _ in range(GRID_HEIGHT)]
+
+# スコアの初期化
+score = 0
+font = pygame.font.SysFont("Arial", 24)
 
 # タイマーイベントの設定
 MOVE_DOWN = pygame.USEREVENT + 1
 pygame.time.set_timer(MOVE_DOWN, 500)  # 500ミリ秒ごとにMOVE_DOWNイベントを発生
 
+current_block = get_new_block()
+
+running = True
 running = True
 while running:
     for event in pygame.event.get():
@@ -100,6 +124,8 @@ while running:
                     y = current_block.y + pos[1]
                     if 0 <= x < GRID_WIDTH and 0 <= y < GRID_HEIGHT:
                         grid[y][x] = current_block.color
+                # ライン消去のチェック
+                clear_lines(grid)
                 # 新しいブロックを生成
                 current_block = get_new_block()
         elif event.type == pygame.KEYDOWN:
@@ -115,6 +141,12 @@ while running:
                 current_block.y += 1
                 if check_collision(current_block, grid):
                     current_block.y -= 1
+            elif event.key == pygame.K_SPACE:
+                current_block.rotate()
+                if check_collision(current_block, grid):
+                    # 回転後に衝突が発生した場合は元に戻す
+                    for _ in range(3):
+                        current_block.rotate()
 
     # 画面を白で塗りつぶす
     screen.fill(WHITE)
@@ -140,6 +172,10 @@ while running:
 
     # 現在のブロックを描画
     current_block.draw(screen)
+
+    # スコアの描画
+    score_text = font.render(f"Score: {score}", True, BLACK)
+    screen.blit(score_text, (10, 10))
 
     # 画面の更新
     pygame.display.update()
