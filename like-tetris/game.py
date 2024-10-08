@@ -43,7 +43,6 @@ class Block:
         )
         self.x = GRID_WIDTH // 2
         self.y = 0
-        self.rotation = 0
 
     def rotate(self):
         # ブロックの形状を回転させる（90度回転）
