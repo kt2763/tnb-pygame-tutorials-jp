@@ -5,6 +5,13 @@ import random
 # Pygameの初期化
 pygame.init()
 
+# フォントの設定
+FONT_PATH = "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf"
+if sys.platform == "win32":
+    FONT_PATH = "C:/Windows/Fonts/meiryo.ttc"
+else:
+    FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"
+
 # 画面サイズの設定
 SCREEN_WIDTH = 300
 SCREEN_HEIGHT = 600
@@ -111,12 +118,10 @@ def clear_lines(grid):
 
 # ゲームオーバー画面を表示する関数
 def show_game_over(surface, score):
-    font_large = pygame.font.SysFont("Arial", 48)
-    font_small = pygame.font.SysFont("Arial", 24)
+    font_large = pygame.font.Font(FONT_PATH, 48)
+    font_small = pygame.font.Font(FONT_PATH, 24)
 
     game_over_text = font_large.render("GAME OVER", True, (255, 0, 0))
-    # このチュートリアルでは日本語環境に対応していないため、日本語のフォントは使わない
-    # 日本語のフォントを使いたい場合は、日本語フォントを読み込む必要がある
     score_text = font_small.render(f"Final Score: {score}", True, BLACK)
     restart_text = font_small.render("Press R to Restart or Q to Quit", True, BLACK)
 
@@ -159,7 +164,7 @@ def main():
     score = 0
 
     # フォントの設定
-    font = pygame.font.SysFont("Arial", 24)
+    font = pygame.font.Font(FONT_PATH, 24)
 
     # タイマーイベントの設定
     MOVE_DOWN = pygame.USEREVENT + 1

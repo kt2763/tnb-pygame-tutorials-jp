@@ -6,11 +6,11 @@
 
 ## 公開ステータス
 
-| 英名 | 日本語名 | ステータス |
-|------|---------|----------|
-| Tetris | テトリス | 開発済み |
-| Pong | ポン | 次回 |
-| Tic-Tac-Toe | 三目並べ（3×3） | 開発予定 |
+| 英名 | 日本語名 | ステータス | README |
+|------|---------|----------|--------|
+| Tetris | テトリス | 開発済み | [tetris/README.md](tetris/README.md) |
+| Pong | ポン | 開発済み | [pong/README.md](pong/README.md) |
+| Tic-Tac-Toe | 三目並べ（3×3） | 開発済み | [tic-tac-toe/README.md](tic-tac-toe/README.md) |
 | Snake | スネーク | 開発予定 |
 | Breakout/Arkanoid | ブレイクアウト/アルカノイド | 開発予定 |
 | Space Invaders | スペースインベーダー | 開発予定 |
@@ -30,3 +30,24 @@
 | Top-Down Shooter | トップダウンシューター | 開発予定 |
 | Minimal Tower Defense | ミニマルタワーディフェンス | 開発予定 |
 | Multiplayer Pong | マルチプレイ ポン | 開発予定 |
+
+## 日本語フォントの設定
+
+Pygameでデフォルトのフォントがたいてい日本語対応していないので、日本語を表示したい場合は別途指定する必要があります。
+
+各ゲームでは、以下のようにプラットフォームに応じて適切な日本語フォントを自動選択するように設定されています：
+
+```python
+# フォントの設定
+FONT_PATH = "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf"
+if sys.platform == "win32":
+    FONT_PATH = "C:/Windows/Fonts/meiryo.ttc"
+else:
+    FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"
+```
+
+### Ubuntuの場合
+
+```shell
+sudo apt -y install fontconfig
+```
