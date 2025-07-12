@@ -2,6 +2,7 @@
 import pygame  # ゲーム開発用のライブラリ
 import random  # ランダムな数値を生成するため
 import math    # 数学的な計算（角度計算など）のため
+import sys     # システム情報（OS判定など）のため
 
 # ゲームウィンドウの設定
 WINDOW_WIDTH = 800   # ウィンドウの横幅（ピクセル）
@@ -24,6 +25,13 @@ BALL_SPEED = 7   # ボールの初期速度
 # スコアとゲーム設定
 SCORE_FONT_SIZE = 50  # スコア表示のフォントサイズ
 WIN_SCORE = 5         # 勝利に必要な得点
+
+# フォントの設定
+FONT_PATH = "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf"
+if sys.platform == "win32":
+    FONT_PATH = "C:/Windows/Fonts/meiryo.ttc"
+else:
+    FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"
 
 
 # パドル（プレイヤーが操作するラケット）のクラス
@@ -135,7 +143,7 @@ class Game:
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption("Pong")  # ウィンドウのタイトル設定
         self.clock = pygame.time.Clock()     # FPS制御用のクロック
-        self.font = pygame.font.Font(None, SCORE_FONT_SIZE)  # スコア表示用フォント
+        self.font = pygame.font.Font(FONT_PATH, SCORE_FONT_SIZE)  # スコア表示用フォント
         
         # パドルを作成（左側と右側）
         self.left_paddle = Paddle(50, WINDOW_HEIGHT // 2 - PADDLE_HEIGHT // 2)
@@ -266,7 +274,7 @@ class Game:
             # 勝利メッセージ
             win_text = self.font.render(f"{self.winner}の勝利！", True, WHITE)
             # 再スタートの案内
-            restart_text = pygame.font.Font(None, 30).render(
+            restart_text = pygame.font.Font(FONT_PATH, 30).render(
                 "スペースキーで再スタート", True, WHITE
             )
             
