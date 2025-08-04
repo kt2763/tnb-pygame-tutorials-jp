@@ -6,30 +6,30 @@
 
 ## 公開ステータス
 
-| 英名 | 日本語名 | ステータス | README |
-|------|---------|----------|--------|
-| Tetris | テトリス | 開発済み | [tetris/README.md](tetris/README.md) |
-| Pong | ポン | 開発済み | [pong/README.md](pong/README.md) |
-| Tic-Tac-Toe | 三目並べ（3×3） | 開発済み | [tic-tac-toe/README.md](tic-tac-toe/README.md) |
-| Snake | スネーク | 開発予定 |
-| Breakout/Arkanoid | ブレイクアウト/アルカノイド | 開発予定 |
-| Space Invaders | スペースインベーダー | 開発予定 |
-| Flappy Bird Clone | Flappy Bird クローン | 開発予定 |
-| Match-3 | マッチ3（Bejeweled 型） | 開発予定 |
-| Pac-Man Lite | パックマン ライト | 開発予定 |
-| Asteroids | アステロイド | 開発予定 |
-| 2D Platformer | 2D プラットフォーマー（1 ステージ） | 開発予定 |
-| Simple Roguelike | シンプル・ローグライク | 開発予定 |
-| Frogger | フロッガー | 開発予定 |
-| Bomberman Lite | ボンバーマン ライト | 開発予定 |
-| Angry Birds Style Slingshot | Angry Birds風スリングショット | 開発予定 |
-| Pinball Mini | ピンボール ミニ | 開発予定 |
-| Minesweeper | マインスイーパー | 開発予定 |
-| 2048 | 2048 | 開発予定 |
-| Endless Runner | エンドレスランナー | 開発予定 |
-| Top-Down Shooter | トップダウンシューター | 開発予定 |
-| Minimal Tower Defense | ミニマルタワーディフェンス | 開発予定 |
-| Multiplayer Pong | マルチプレイ ポン | 開発予定 |
+| 英名                        | 日本語名                            | ステータス | README                                             |
+| --------------------------- | ----------------------------------- | ---------- | -------------------------------------------------- |
+| Tetris                      | テトリス                            | 開発済み   | [tetris/README.md](tetris/README.md)               |
+| Pong                        | ポン                                | 開発済み   | [pong/README.md](pong/README.md)                   |
+| Tic-Tac-Toe                 | 三目並べ（3×3）                     | 開発済み   | [tic-tac-toe/README.md](tic-tac-toe/README.md)     |
+| Snake                       | スネーク                            | 開発予定   |
+| Breakout/Arkanoid           | ブレイクアウト/アルカノイド         | 開発予定   |
+| Space Invaders              | スペースインベーダー                | 開発済み   | [space-invader/README.md](space-invader/README.md) |
+| Flappy Bird Clone           | Flappy Bird クローン                | 開発予定   |
+| Match-3                     | マッチ3（Bejeweled 型）             | 開発予定   |
+| Pac-Man Lite                | パックマン ライト                   | 開発予定   |
+| Asteroids                   | アステロイド                        | 開発予定   |
+| 2D Platformer               | 2D プラットフォーマー（1 ステージ） | 開発予定   |
+| Simple Roguelike            | シンプル・ローグライク              | 開発予定   |
+| Frogger                     | フロッガー                          | 開発予定   |
+| Bomberman Lite              | ボンバーマン ライト                 | 開発予定   |
+| Angry Birds Style Slingshot | Angry Birds風スリングショット       | 開発予定   |
+| Pinball Mini                | ピンボール ミニ                     | 開発予定   |
+| Minesweeper                 | マインスイーパー                    | 開発予定   |
+| 2048                        | 2048                                | 開発予定   |
+| Endless Runner              | エンドレスランナー                  | 開発予定   |
+| Top-Down Shooter            | トップダウンシューター              | 開発予定   |
+| Minimal Tower Defense       | ミニマルタワーディフェンス          | 開発予定   |
+| Multiplayer Pong            | マルチプレイ ポン                   | 開発予定   |
 
 ## 日本語フォントの設定
 
