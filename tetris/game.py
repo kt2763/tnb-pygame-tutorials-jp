@@ -1,16 +1,21 @@
-import pygame
-import sys
+import os
 import random
+import sys
+
+import pygame
 
 # Pygameの初期化
 pygame.init()
 
 # フォントの設定
 FONT_PATH = "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf"
+
 if sys.platform == "win32":
     FONT_PATH = "C:/Windows/Fonts/meiryo.ttc"
 else:
-    FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"
+    # フォントがあるかどうか確認
+    if not os.path.exists(FONT_PATH):
+        FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"
 
 # 画面サイズの設定
 SCREEN_WIDTH = 300
@@ -118,8 +123,12 @@ def clear_lines(grid):
 
 # ゲームオーバー画面を表示する関数
 def show_game_over(surface, score):
-    font_large = pygame.font.Font(FONT_PATH, 48)
-    font_small = pygame.font.Font(FONT_PATH, 24)
+    if os.path.exists(FONT_PATH):
+        font_large = pygame.font.Font(FONT_PATH, 48)
+        font_small = pygame.font.Font(FONT_PATH, 24)
+    else:
+        font_large = pygame.font.SysFont("Arial", 48)
+        font_small = pygame.font.SysFont("Arial", 24)
 
     game_over_text = font_large.render("GAME OVER", True, (255, 0, 0))
     score_text = font_small.render(f"Final Score: {score}", True, BLACK)
@@ -164,7 +173,10 @@ def main():
     score = 0
 
     # フォントの設定
-    font = pygame.font.Font(FONT_PATH, 24)
+    if os.path.exists(FONT_PATH):
+        font = pygame.font.Font(FONT_PATH, 24)
+    else:
+        font = pygame.font.SysFont("Arial", 24)
 
     # タイマーイベントの設定
     MOVE_DOWN = pygame.USEREVENT + 1
